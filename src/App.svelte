@@ -6,6 +6,7 @@
   import Play from "@lucide/svelte/icons/play";
   import X from "@lucide/svelte/icons/x";
   import { GithubIcon, LinkedInIcon } from "./icon";
+  import profilePhoto from "./assets/pic.jpg";
 
   const careerStartYear = 2020;
   const yearsOfExperience = new Date().getFullYear() - careerStartYear;
@@ -454,14 +455,12 @@
     <div class="personal-layout">
       <div
         class="personal-photo w-[200px] h-[200px] flex items-center justify-center -rotate-6"
-        role="img"
-        aria-label="Photo of Akbar Ismail"
       >
         <div class="bg-white p-1 rounded-lg w-fit h-fit rotate-7">
           <img
-            src="../src/assets/pic.jpg"
+            src={profilePhoto}
             class="w-[200px] h-[200px] object-cover rounded"
-            alt=""
+            alt="Akbar Ismail"
           />
         </div>
       </div>
