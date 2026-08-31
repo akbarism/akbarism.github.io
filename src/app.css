@@ -207,6 +207,11 @@ a:focus-visible {
   background: linear-gradient(155deg, #9a735f 0%, #4c342c 72%);
 }
 
+.story-cover.purple,
+.story-viewer.purple {
+  background: linear-gradient(155deg, #80669a 0%, #372541 72%);
+}
+
 .story-cover:hover {
   transform: translateY(-4px);
   box-shadow: 0 18px 38px rgb(0 0 0 / 13%);
@@ -514,6 +519,55 @@ a:focus-visible {
   margin: 0;
 }
 
+.personal-section {
+  padding-top: 4.75rem;
+}
+
+.personal-layout {
+  display: grid;
+  grid-template-columns: 13.5rem minmax(0, 1fr);
+  align-items: stretch;
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+.personal-photo {
+  border: 1px solid #e2e2de;
+  border-radius: 1.5rem;
+  color: #92928c;
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / 55%), transparent), #ecece8;
+}
+
+/* .personal-photo img {
+  filter: grayscale(100%);
+} */
+
+.personal-copy {
+  align-self: center;
+  font-size: 0.96rem;
+  line-height: 1.72;
+  letter-spacing: -0.01em;
+  color: #555550;
+  text-wrap: pretty;
+}
+
+.personal-copy p {
+  margin: 0;
+}
+
+.personal-copy p + p {
+  margin-top: 1.25rem;
+}
+
+.personal-copy strong {
+  font-weight: 500;
+  color: #181817;
+}
+
+.personal-copy .current-time {
+  white-space: nowrap;
+}
+
 .footer {
   display: flex;
   align-items: center;
@@ -533,6 +587,34 @@ a:focus-visible {
   align-items: center;
   gap: 0.45rem;
   color: #282826;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-email {
+  margin-right: 0.25rem;
+}
+
+.footer .social-link {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 1px solid #deded9;
+  border-radius: 999px;
+  background: #fafaf8;
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.footer .social-link:hover {
+  border-color: #aaa9a3;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 640px) {
@@ -571,9 +653,33 @@ a:focus-visible {
     gap: 0.7rem;
   }
 
+  .personal-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .personal-photo {
+    width: 11.5rem;
+    height: 11.5rem;
+    justify-self: center;
+    margin-bottom: 1rem;
+  }
+
+  .personal-photo img {
+    width: 11rem;
+    height: 11rem;
+  }
+
+  .personal-copy {
+    font-size: 0.94rem;
+  }
+
   .footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
   }
 }
 

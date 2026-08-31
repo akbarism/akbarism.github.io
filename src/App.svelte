@@ -1,18 +1,40 @@
 <script>
+  import { onMount } from "svelte";
   import Mail from "@lucide/svelte/icons/mail";
   import ChevronLeft from "@lucide/svelte/icons/chevron-left";
   import ChevronRight from "@lucide/svelte/icons/chevron-right";
   import Play from "@lucide/svelte/icons/play";
   import X from "@lucide/svelte/icons/x";
+  import { GithubIcon, LinkedInIcon } from "./icon";
 
   const careerStartYear = 2020;
   const yearsOfExperience = new Date().getFullYear() - careerStartYear;
+
+  /** @param {Date} date */
+  function formatJakartaTime(date) {
+    return new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Jakarta",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    }).format(date);
+  }
+
+  let jakartaTime = formatJakartaTime(new Date());
+
+  onMount(() => {
+    const intervalId = window.setInterval(() => {
+      jakartaTime = formatJakartaTime(new Date());
+    }, 60_000);
+
+    return () => window.clearInterval(intervalId);
+  });
 
   const projects = [
     {
       title: "Psychological Assessment Platform",
       eyebrow: "Assessment & Psychology",
-      tone: "ink",
+      tone: "clay",
       stories: [
         {
           label: "01 — The beginning",
@@ -67,7 +89,7 @@
     {
       title: "HIMPSI — Professional Management Platform",
       eyebrow: "People & Professional Services",
-      tone: "clay",
+      tone: "purple",
       stories: [
         {
           label: "01 — The beginning",
@@ -124,6 +146,33 @@
           label: "10 — What it taught me",
           title: "Good software isn't built from requirements alone.",
           body: "Sometimes you have to understand the rules, the people, the pressure, and the consequences behind them. Then turn all of that into something that simply works.",
+        },
+      ],
+    },
+    {
+      title: "And Much, Much More",
+      eyebrow: "A Collection of Challenging Projects",
+      tone: "ink",
+      stories: [
+        {
+          label: "Learning should be structured, but never complicated.",
+          title: "LMS",
+          body: "Built an LMS for Tanoto Foundation, focused on delivering a clear and accessible learning experience.",
+        },
+        {
+          label: "One dashboard, many things happening behind it.",
+          title: "CMS",
+          body: "Built a CMS to manage advertising content, B2C online test and training registrations, blogs, and more.",
+        },
+        {
+          label: "Turning scattered business operations into one system.",
+          title: "CRM",
+          body: "Built an internal CRM to manage clients, products, transactions, and the day-to-day operations behind them.",
+        },
+        {
+          label: "A well-defined product with an unforgiving deadline.",
+          title: "HRIS",
+          body: "The business requirements were clear and carefully structured. The timeline wasn't. We pushed beyond normal hours, stayed committed to the deadline, and delivered what we promised. It was intense, but I'm glad we did it",
         },
       ],
     },
@@ -233,10 +282,6 @@
       <h1 id="intro-heading">
         Hi, I'm Akbar Ismail<span aria-hidden="true">,</span>
       </h1>
-      <p class="text-xs mt-1 text-slate-500">
-        You can call me Ma’il (pronounced “ma-eel”), not “mail.” Don’t overthink
-        it, tho.
-      </p>
       <p class="role">Fullstack Developer.</p>
       <p class="summary">
         I turn complexity into simple systems that work, matter, and last.
@@ -402,11 +447,68 @@
     </div>
   </section>
 
+  <section
+    class="section-shell content-section personal-section"
+    aria-labelledby="personal-heading"
+  >
+    <div class="personal-layout">
+      <div
+        class="personal-photo w-[200px] h-[200px] flex items-center justify-center -rotate-6"
+        role="img"
+        aria-label="Photo of Akbar Ismail"
+      >
+        <div class="bg-white p-1 rounded-lg w-fit h-fit rotate-7">
+          <img
+            src="../src/assets/pic.jpg"
+            class="w-[200px] h-[200px] object-cover rounded"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div class="personal-copy">
+        <p>
+          Like you’ve seen above, my name is <strong>Akbar Ismail</strong>. You
+          can call me <strong>Ma’il</strong> (pronounced “ma-eel”), not “mail.” But
+          don’t overthink it, though.
+        </p>
+
+        <p>
+          I’m based in <strong>Bandung, Indonesia</strong>, on GMT+7. It’s
+          <strong class="current-time">{jakartaTime}</strong> here right now. If you’re somewhere in
+          a very different timezone, don’t worry, I’ll still be around. Or even
+          better, I’ll be working while you sleep, so you can wake up to the
+          task already done. <span aria-label="playful expression">:p</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
   <footer class="section-shell footer">
     <p>Have a project or role in mind?</p>
-    <a href="mailto:hello@example.com">
-      <Mail size={16} strokeWidth={1.7} aria-hidden="true" />
-      hello@example.com
-    </a>
+    <div class="footer-links">
+      <a class="footer-email" href="mailto:akbarismaiel@gmail.com">
+        <Mail size={16} strokeWidth={1.7} aria-hidden="true" />
+        akbarismaiel@gmail.com
+      </a>
+      <a
+        class="social-link"
+        href="https://github.com/akbarism"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Akbar Ismail on GitHub"
+      >
+        <GithubIcon size={17} />
+      </a>
+      <a
+        class="social-link"
+        href="https://www.linkedin.com/in/akbarism/"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Akbar Ismail on LinkedIn"
+      >
+        <LinkedInIcon size={17} />
+      </a>
+    </div>
   </footer>
 </main>
